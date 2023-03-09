@@ -3,16 +3,19 @@ package edu.ucalgary.oop;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Sensor implements Cloneable {
-    private final String sensor;
+public class Sensor implements Cloneable, FormattedOutput{
+    private String sensor;
+
     private static final String REGEX = "\\(([a-z]+)\\)";
     private static final Pattern PATTERN = Pattern.compile(REGEX);
 
-    public Sensor(String sensor) throws IllegalArgumentException {
-        if (sensor == null) {
-            throw new IllegalArgumentException("Sensor cannot be null");
+    public Sensor(String sensor) throws IllegalArgumentException{
+        Matcher matches = PATTERN.matcher(sensor);
+        if(!matches.matches()) {
+            throw new IllegalArgumentException("Not a valid argument entry");
         }
         this.sensor = sensor;
+
     }
 
     public String getSensor() {
@@ -24,11 +27,8 @@ public class Sensor implements Cloneable {
         return super.clone();
     }
 
-    public static Sensor valueOf(String sensorString) throws IllegalArgumentException {
-        Matcher matcher = PATTERN.matcher(sensorString);
-        if (matcher.find()) {
-            return new Sensor(matcher.group(1));
-        }
-        throw new IllegalArgumentException("Invalid sensor string: " + sensorString);
+    @Override
+    public String getFormatted(){
+        return this.sensor;
     }
 }
