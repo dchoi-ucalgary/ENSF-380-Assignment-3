@@ -1,7 +1,7 @@
 package edu.ucalgary.oop;
 
 enum Directions{
-    
+
     E  {public String toString(){ return "East"; }},
 
     N  {public String toString(){ return "North"; }},

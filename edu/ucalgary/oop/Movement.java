@@ -14,7 +14,7 @@ public class Movement implements Cloneable, FormattedOutput{
         Matcher matcher = PATTERN.matcher(movement);
         if(matcher.matches()){
             this.action = movement.substring(movement.indexOf('"') + 1, movement.indexOf(' '));
-            this.direction = movement.substring(movement.lastIndexOf(' '), movement.length());
+            this.direction = movement.substring(movement.lastIndexOf(' ') + 1, movement.length());
         }
         else {
             throw new IllegalArgumentException("Invalid movement string: " + movement);
@@ -36,28 +36,34 @@ public class Movement implements Cloneable, FormattedOutput{
         cloned.direction = this.direction;
         return cloned;
     }
-    
+
     @Override
     public String getFormatted(){
-        if(this.direction == "NE") {
-            return (Directions.NE.toString());
+        if("NE".equals(this.direction)) {
+            return "Action: " + this.action + ", " + "Direction: " + Directions.NE.toString();
         }
-        else if(this.direction == "NW") {
-            return (Directions.NW.toString());
+        if("NW".equals(this.direction)) {
+            return "Action: " + this.action + ", " + "Direction: " + Directions.NW.toString();
         }
-        else if(this.direction == "SE") {
-            return (Directions.SE.toString());
+        if("SE".equals(this.direction)) {
+            return "Action: " + this.action + ", " + "Direction: " + Directions.SE.toString();
         }
-        else if(this.direction == "SW") {
-            return (Directions.SW.toString());
+        if("SW".equals(this.direction)) {
+            return "Action: " + this.action + ", " + "Direction: " + Directions.SW.toString();
         }
-        else if(this.direction == "E") {
-            return (Directions.E.toString());
+        if("N".equals(this.direction)) {
+            return "Action: " + this.action + ", " + "Direction: " + Directions.N.toString();
         }
-        else if(this.direction == "W") {
-            return (Directions.W.toString());
+        if("E".equals(this.direction)) {
+            return "Action: " + this.action + ", " + "Direction: " + Directions.E.toString();
         }
-        else {
+        if("S".equals(this.direction)) {
+            return "Action: " + this.action + ", " + "Direction: " + Directions.S.toString();
+        }
+        if("W".equals(this.direction)) {
+            return "Action: " + this.action + ", " + "Direction: " + Directions.W.toString();
+        }
+        else{
             return "";
         }
     }

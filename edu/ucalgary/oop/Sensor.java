@@ -4,10 +4,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Sensor implements Cloneable, FormattedOutput{
-    private String sensor;
 
-    private static final String REGEX = "\\(([a-z]+)\\)";
-    private static final Pattern PATTERN = Pattern.compile(REGEX);
+    private String sensor;
+    private String REGEX = "([a-z]+)";
+
+    private Pattern PATTERN = Pattern.compile(REGEX);
 
     public Sensor(String sensor) throws IllegalArgumentException{
         Matcher matches = PATTERN.matcher(sensor);
@@ -29,6 +30,6 @@ public class Sensor implements Cloneable, FormattedOutput{
 
     @Override
     public String getFormatted(){
-        return this.sensor;
+        return "Sensor: " + this.sensor;
     }
 }
