@@ -40,28 +40,36 @@ public class Movement implements Cloneable, FormattedOutput{
     @Override
     public String getFormatted(){
         if("NE".equals(this.direction)) {
-            return "Action: " + this.action + ", " + "Direction: " + Directions.NE.toString();
+            return "Action: " + this.action + ", " 
+            + "Direction: " + Directions.NE.toString();
         }
         if("NW".equals(this.direction)) {
-            return "Action: " + this.action + ", " + "Direction: " + Directions.NW.toString();
+            return "Action: " + this.action + ", " 
+            + "Direction: " + Directions.NW.toString();
         }
         if("SE".equals(this.direction)) {
-            return "Action: " + this.action + ", " + "Direction: " + Directions.SE.toString();
+            return "Action: " + this.action + ", " 
+            + "Direction: " + Directions.SE.toString();
         }
         if("SW".equals(this.direction)) {
-            return "Action: " + this.action + ", " + "Direction: " + Directions.SW.toString();
+            return "Action: " + this.action + ", " 
+            + "Direction: " + Directions.SW.toString();
         }
         if("N".equals(this.direction)) {
-            return "Action: " + this.action + ", " + "Direction: " + Directions.N.toString();
+            return "Action: " + this.action + ", " 
+            + "Direction: " + Directions.N.toString();
         }
         if("E".equals(this.direction)) {
-            return "Action: " + this.action + ", " + "Direction: " + Directions.E.toString();
+            return "Action: " + this.action + ", " 
+            + "Direction: " + Directions.E.toString();
         }
         if("S".equals(this.direction)) {
-            return "Action: " + this.action + ", " + "Direction: " + Directions.S.toString();
+            return "Action: " + this.action + ", " 
+            + "Direction: " + Directions.S.toString();
         }
         if("W".equals(this.direction)) {
-            return "Action: " + this.action + ", " + "Direction: " + Directions.W.toString();
+            return "Action: " + this.action + ", " 
+            + "Direction: " + Directions.W.toString();
         }
         else{
             return "";
