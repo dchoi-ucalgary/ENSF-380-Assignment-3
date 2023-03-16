@@ -37,14 +37,14 @@ public class RobotDataLine implements Cloneable {
         int moveStart = line.indexOf('"');
         int moveEnd   = line.lastIndexOf(' ');
 
-        int sensorStart = line.indexOf("(");
+        int sensorStart = line.indexOf("(") + 1;
         int sensorEnd = line.lastIndexOf('"') - 1;
 
         this.movement = new Movement(line.substring(moveStart, moveEnd));
         this.sensor = new Sensor(line.substring(sensorStart + 1, sensorEnd));
         
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        String test_date = line.substring(line.indexOf('[') + 1, line.indexOf(']'));
+        String test_date = line.substring(line.indexOf('['), line.indexOf(']'));
 
         this.date = LocalDate.parse(test_date, formatter);
         this.robotID = robotID;
