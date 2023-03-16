@@ -5,9 +5,14 @@ import java.util.*;
 public class RobotDataRecord implements Cloneable{
     private ArrayList<RobotDataLine> log = new ArrayList <>();
 
-    public RobotDataRecord(String[] array) {
-        for(String element : array) {
-            this.log.add(new RobotDataLine(element));
+    public RobotDataRecord(String[] array) { 
+        for (int i = 0; i < array.length; i++) {
+            try {
+                this.log.add(new RobotDataLine(array[i]));
+            }
+            catch (IllegalArgumentException e) {
+                // ??? = stonks
+            }
         }
     }
 

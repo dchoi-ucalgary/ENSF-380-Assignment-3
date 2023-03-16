@@ -53,8 +53,8 @@ public class MyOutput {
             //Example of testing invalid input- modify the data as needed to try various invalid scenarios
             // If you want to check IllegalArgumentExceptions being thrown, you can instantiate RobotDataLine, Movement, and Sensor. Bad data lines should be skipped by RobotDataRecord.
             System.out.println("Uncomment below to test exceptions...");
-            //String[] badData = getBadData();
-            //RobotDataRecord badDataFile = new RobotDataRecord(badData);
+            String[] badData = getBadData();
+            RobotDataRecord badDataFile = new RobotDataRecord(badData);
 	}
 
 

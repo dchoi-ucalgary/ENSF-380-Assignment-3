@@ -2,6 +2,7 @@ package edu.ucalgary.oop;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -25,13 +26,23 @@ public class RobotDataLine implements Cloneable {
 
         String robotID = line.substring(5, 11);
         Matcher robot_matches = ROBOT_PATTERN.matcher(robotID);
-        
+
         if(!date_matches.matches()) {
             throw new IllegalArgumentException("Not a valid date input");
         }
 
         if(!robot_matches.matches()) {
             throw new IllegalArgumentException("Not a valid robot input");
+        }
+
+        String test_date = line.substring(line.indexOf('[') + 1, line.indexOf(']'));
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        try {
+            this.date = LocalDate.parse(test_date, formatter);
+        }
+        catch (DateTimeParseException e) {
+            throw new IllegalArgumentException("Invalid date");
         }
 
         int moveStart = line.indexOf('"');
@@ -42,9 +53,7 @@ public class RobotDataLine implements Cloneable {
 
         this.movement = new Movement(line.substring(moveStart, moveEnd));
         this.sensor = new Sensor(line.substring(sensorStart, sensorEnd));
-        
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        String test_date = line.substring(line.indexOf('[') + 1, line.indexOf(']'));
+
         this.date = LocalDate.parse(test_date, formatter);
         this.robotID = robotID;
 
