@@ -10,14 +10,25 @@ public class Movement implements Cloneable, FormattedOutput{
     private String action;
     private String direction;
 
-    public Movement(String movement) throws IllegalArgumentException {
+    public Movement(String movement) throws IllegalArgumentException { 
         Matcher matcher = PATTERN.matcher(movement);
-        if(matcher.matches()){
-            this.action = movement.substring(movement.indexOf('"') + 1, movement.indexOf(' '));
-            this.direction = movement.substring(movement.lastIndexOf(' ') + 1, movement.length());
+        
+        if(!matcher.matches()){
+            throw new IllegalArgumentException("Invalid movement string: " + movement);
         }
         else {
-            throw new IllegalArgumentException("Invalid movement string: " + movement);
+            try {
+                String testStringAction = movement.substring(movement.indexOf('"') + 1, movement.indexOf(' '));
+                String testStringDirection = movement.substring(movement.lastIndexOf(' ') + 1, movement.length());
+                Actions testAction = Actions.valueOf(testStringAction.toUpperCase());
+                Directions testDirection = Directions.valueOf(testStringDirection.toUpperCase());
+            }
+            catch (IllegalArgumentException e) {
+                throw new IllegalArgumentException("Invalid Action");
+            }
+
+            this.action = movement.substring(movement.indexOf('"') + 1, movement.indexOf(' '));
+            this.direction = movement.substring(movement.lastIndexOf(' ') + 1, movement.length());
         }
     }
 
